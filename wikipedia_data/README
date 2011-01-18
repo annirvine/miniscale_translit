@@ -1,0 +1,4 @@
+The file wikipedia-names.uniq includes the Wikipedia-person-page titles linked to English pages for many languages, all tab separated. The language codes are listed in the first line. The following script will fetch name pairs for any pair of languages:
+
+perl get-name-pairs.perl wikipedia-names.uniq ko ru
+
