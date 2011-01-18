@@ -33,6 +33,8 @@ Can use other LM, just change pointer in train_main.sh (and script for adding be
 
 Substitute transliterations into Joshua MT output
 
+To find OOVs in Joshua MT output: find-oovs.pl
+
 After generating transliterations for all OOV words, create a dictionary file (oov word - tab - transliterated word), and substitute them into the Joshua output:
 python sub-oovs.py tab-separated-oov-dictionary translation-output-file
 
