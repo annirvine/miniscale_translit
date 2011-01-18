@@ -1,0 +1,42 @@
+Transliteration training and decoding with sample Urdu data
+
+1. If using a mac, update SRILM call in train_helper (comment out line 72, uncomment line 73)
+If using CLSP or COE clusters, do nothing.
+
+2. Set JOSHUA, SRILM, and JAVA_HOME environment variables appropriately (or use my pointers at the top of train_helper and test_helper for coe machines)
+
+3. To train a system, create directory with a file containing a "train" file and a "dev" file with transliteration pairs, then run (pointing to training directory):
+./train_main.sh demo_data/urdu
+Example directory is demo_data/urdu (note that these example train and dev files already have beginning of word and end of word symbols appended)
+
+4. To decode a test set, run:
+./translit_strings.sh demo_data/urdu/urdu_test demo_data/urdu
+First arg: test file (list of single words to decode)
+Second arg: pointer to same directory given in training step, above
+
+Output in demo_data/urdu/urdu_test.answer
+For this example, references are given in demo_data/urdu/urdu_test.ref for comparison
+
+-------------------------------------
+
+Using your own data
+
+train/dev data:
+To use your own, just need to create directory with a train and dev file. Script to append beginning and word and end of word symbols: addSymTrainDev.py (run: python addSymTrainDev.py inputTrain)
+
+language model data:
+Two English language model files are included in demo_data/lm 
+One is taken from Wikipedia person-page titles and the other from NE-labeled Gigaword corpus, and each includes relative frequency counts.
+Can use other LM, just change pointer in train_main.sh (and script for adding beginning of word and end of word symbols in demo_data/lm)
+
+-------------------------------------
+
+Substitute transliterations into Joshua MT output
+
+After generating transliterations for all OOV words, create a dictionary file (oov word - tab - transliterated word), and substitute them into the Joshua output:
+python sub-oovs.py tab-separated-oov-dictionary translation-output-file
+
+-------------------------------------
+
+Questions:
+annirvine@gmail.com
