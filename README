@@ -17,6 +17,10 @@ Second arg: pointer to same directory given in training step, above
 Output in demo_data/urdu/urdu_test.answer
 For this example, references are given in demo_data/urdu/urdu_test.ref for comparison
 
+5. Evaluate your output:
+python evaluate.py demo_data/urdu/urdu_test.answer demo_data/urdu/urdu_test.ref
+This simple evaluation script reports the number and percent of perfect transliterations, the average edit distance, and the average normalized (normalized by the length of the reference) edit distance
+
 -------------------------------------
 
 Using your own data
