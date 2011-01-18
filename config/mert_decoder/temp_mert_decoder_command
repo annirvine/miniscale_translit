@@ -1,0 +1,5 @@
+java -Xmx1g -cp $JOSHUA/bin/ -Djava.library.path=$JOSHUA/lib -Dfile.encoding=utf8 \
+	joshua.decoder.JoshuaDecoder \
+	/home/hltcoe/airvine/translit_share/data/greek_english_26/perc_100/ten_fold/set_0/trained/mert/joshua.config.plus \
+	/home/hltcoe/airvine/translit_share/data/greek_english_26/perc_100/ten_fold/set_0/trained/devTestData/devTest.f \
+	/home/hltcoe/airvine/translit_share/data/greek_english_26/perc_100/ten_fold/set_0/trained/mert/test.output.nbest 

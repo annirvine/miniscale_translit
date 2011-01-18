@@ -1,0 +1,7 @@
+lm			|||	1.000000		Opt	0.1	+Inf	+0.5	+1.5
+phrasemodel_pt_0	|||	1.066893		Opt	-Inf	+Inf	-1	+1
+phrasemodel_pt_1	|||	0.752247		Opt	-Inf	+Inf	-1	+1
+phrasemodel_pt_2	|||	0.589793		Opt	-Inf	+Inf	-1	+1
+charpenalty		|||	-2.844814		Opt	-Inf	+Inf	-5	0
+wordmodel               |||     1.000000                Opt     -Inf    +Inf    -1      +1
+normalization = absval 1 lm

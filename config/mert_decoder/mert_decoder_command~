@@ -1,0 +1,5 @@
+java -Xmx1g -cp $JOSHUA/bin/ -Djava.library.path=$JOSHUA/lib -Dfile.encoding=utf8 \
+	joshua.decoder.JoshuaDecoder \
+	+TRAINING_ROOT_DIR+/mert/mert_joshua.config \
+	+TRAINING_ROOT_DIR+/devTestData/devTest.f \
+	+TRAINING_ROOT_DIR+/mert/test.output.nbest 

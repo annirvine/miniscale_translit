@@ -1,0 +1,4 @@
+perl +RERANK_TRANSLITERATIONS+ \
+	+TRAINING_ROOT_DIR+/mert_reranker/reranker.config \
+	+TRAINING_ROOT_DIR+/mert_reranker/test.decoder_output.nbest \
+	+TRAINING_ROOT_DIR+/mert_reranker/test.reranker_output.nbest 

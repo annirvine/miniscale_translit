@@ -1,0 +1,81 @@
+use strict;
+use warnings;
+
+
+die "Usage: $0 wordModelFile charLMTrainingFile maxNumTrainingSamples" if @ARGV != 3;
+
+
+my $wordModelFile = shift;
+my $charLMTrainingFile = shift;
+my $maxNumTrainingSamples = shift;
+
+
+my %wordModel = %{readWordModel($wordModelFile)};
+my $minProb = getMinValue(\%wordModel);
+
+my $numTrainingSamples = 1.0 / $minProb;
+$numTrainingSamples = $maxNumTrainingSamples if $numTrainingSamples > $maxNumTrainingSamples;
+
+
+open OUT, ">$charLMTrainingFile" or die;
+foreach my $key (keys %wordModel) {
+    my $count = $wordModel{$key} * $numTrainingSamples;
+    if($count<1) {
+	$count=1;
+    }
+    else {
+	$count = round($count);
+    }
+
+    my $charString = join(" ", (split //, $key));
+    for(my $i=0; $i<$count; $i++) {
+	print OUT $charString."\n";
+    }
+}
+close OUT;
+
+
+sub round {
+    my ($num) = @_;
+    
+    my $intPart = int($num);
+    my $remainder = $num - $intPart;
+    
+    if($remainder < 0.5) {
+	return $intPart;
+    }
+    else {
+	return $intPart+1;
+    }
+}
+
+
+sub getMinValue {
+    my ($hash) =@_;
+    my $min=undef;
+    foreach my $key (keys %$hash) {
+	my $value = $hash->{$key};
+	if(!defined($min) || $min > $value) {
+	    $min = $value;
+	}
+    }
+    return $min;
+}
+
+
+sub readWordModel {
+    my ($file) = @_;
+    open W, $file or die;
+    my %words = ();
+    while(<W>) {
+	s/\s+$//;
+	s/^\s+//;
+	my @tokens = split /\s+/;
+	die if @tokens != 2;
+	my ($word, $prob) = @tokens;
+	die if defined($words{$word});
+	$words{$word} = $prob;
+    }
+    close W;
+    return \%words;
+}
