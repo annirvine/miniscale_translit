@@ -35,6 +35,11 @@ Can use other LM, just change pointer in train_main.sh (and script for adding be
 
 -------------------------------------
 
+Using Wikipedia data:
+See wikipedia_data/README
+
+-------------------------------------
+
 Substitute transliterations into Joshua MT output
 
 To find OOVs in Joshua MT output: find-oovs.pl
